@@ -16,3 +16,4 @@ backend/data/*.db*
 playwright-report/
 test-results/
 coverage/
+tmp/

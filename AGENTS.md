@@ -91,3 +91,9 @@ redis-server
 cd frontend && pnpm dev
 cd frontend && pnpm gen:api               # after any backend schema change
 ```
+
+## 9. Backup and push authorization
+
+- Backup repository: `https://github.com/gauthicm-bit/backup.git`.
+- Push to GitHub only when the user explicitly requests a push or upload. The initial backup upload is authorized; this is not standing permission for later pushes.
+- After the initial backup, keep subsequent changes local until the user explicitly authorizes another push.
