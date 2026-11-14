@@ -43,3 +43,6 @@ Gate: Gate 3 PASS — both cached presets render all real chart data. Gate 2 rem
 ## 2026-11-14 · all · local delivery · contract 1.0.0
 Ready: Final app responds at http://127.0.0.1:5173 and API at http://127.0.0.1:8000. scripts/start-local.ps1 restarts both. User explicitly selected local use, no deployment. Final real-API browser smoke on port 5173 records no console or page errors; mobile benchmark fits the full selected history. Generated schema SHA256 9F633C199F43AD7A344652C64232D09C7D7C3F34D89ED4A769D744487EE9F278.
 Remaining: Gate 2 preset Skill criterion unmet; GARCH realism 5/8; optional deep generators unavailable. Local inprocess mode is verified; Redis/RQ/Postgres/Docker runtime and human hallway testing are unverified.
+
+## 2026-11-14 · A → all · local launcher fix · contract 1.0.0
+Ready: start-local.ps1 now discovers Node from PATH, standard installations or registered Codex runtime; validates it before starting servers, quotes Vite paths and waits for both endpoints. Verified with Node removed from PATH, reproducing the user's ordinary PowerShell environment. Both local endpoints returned 200.

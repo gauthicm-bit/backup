@@ -29,6 +29,8 @@ Open [the app](http://localhost:5173), [API docs](http://localhost:8000/docs), o
 
 After installing dependencies, Windows users can also run `./scripts/start-local.ps1` from the repository root to start both servers in the background. Logs are written to `.local-logs/`.
 
+The launcher finds Node.js from your PATH, standard installation folders, or the installed Codex runtime. It checks Node before starting servers and waits for both URLs to respond. For another installation, set `$env:MULTIVERSE_NODE_EXE = 'C:\path\to\node.exe'` before running the script.
+
 The committed price cache contains genuine Yahoo Finance Nifty data from 2008-01-01 through 2026-11-13. The loader downloads on a coverage miss; an unavailable provider produces an explicit error. Audit output is local under `backend/data/audits/` and is excluded from Git.
 
 ## Docker and RQ
