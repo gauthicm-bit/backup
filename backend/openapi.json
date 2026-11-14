@@ -1,0 +1,3514 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Multiverse",
+    "version": "2.2.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/market/prices": {
+      "get": {
+        "summary": "Market Prices",
+        "operationId": "market_prices_api_v1_market_prices_get",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "const": "^NSEI",
+              "type": "string",
+              "title": "Symbol"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Start"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "End"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/strategies/templates": {
+      "get": {
+        "summary": "Templates",
+        "operationId": "templates_api_v1_strategies_templates_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TemplateInfo"
+                  },
+                  "type": "array",
+                  "title": "Response Templates Api V1 Strategies Templates Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/generators": {
+      "get": {
+        "summary": "Generators",
+        "operationId": "generators_api_v1_generators_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GeneratorInfo"
+                  },
+                  "type": "array",
+                  "title": "Response Generators Api V1 Generators Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/generators/{id}/realism": {
+      "get": {
+        "summary": "Generator Realism",
+        "operationId": "generator_realism_api_v1_generators__id__realism_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealismReport"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/presets": {
+      "get": {
+        "summary": "Presets",
+        "operationId": "presets_api_v1_presets_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Preset"
+                  },
+                  "type": "array",
+                  "title": "Response Presets Api V1 Presets Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/audits": {
+      "post": {
+        "summary": "Create Audit",
+        "operationId": "create_audit_api_v1_audits_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAuditRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateAuditResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "get": {
+        "summary": "Audit List",
+        "operationId": "audit_list_api_v1_audits_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "queued",
+                    "running",
+                    "done",
+                    "error",
+                    "cancelled"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditList"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}": {
+      "get": {
+        "summary": "Audit Detail",
+        "operationId": "audit_detail_api_v1_audits__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Audit",
+        "operationId": "delete_audit_api_v1_audits__id__delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "204": {
+            "description": "Audit deleted"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/events": {
+      "get": {
+        "summary": "Audit Events",
+        "operationId": "audit_events_api_v1_audits__id__events_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/fan": {
+      "get": {
+        "summary": "Chart Fan",
+        "operationId": "chart_fan_api_v1_audits__id__charts_fan_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FanChart"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/fan/paths": {
+      "get": {
+        "summary": "Chart Fan Paths",
+        "operationId": "chart_fan_paths_api_v1_audits__id__charts_fan_paths_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FanPaths"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/sharpe": {
+      "get": {
+        "summary": "Chart Sharpe",
+        "operationId": "chart_sharpe_api_v1_audits__id__charts_sharpe_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharpeChart"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/pbo": {
+      "get": {
+        "summary": "Chart Pbo",
+        "operationId": "chart_pbo_api_v1_audits__id__charts_pbo_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PBOChart"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/dsr": {
+      "get": {
+        "summary": "Chart Dsr",
+        "operationId": "chart_dsr_api_v1_audits__id__charts_dsr_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DSRChart"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/survival": {
+      "get": {
+        "summary": "Chart Survival",
+        "operationId": "chart_survival_api_v1_audits__id__charts_survival_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SurvivalChart"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/realism": {
+      "get": {
+        "summary": "Chart Realism",
+        "operationId": "chart_realism_api_v1_audits__id__charts_realism_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealismReport"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/audits/{id}/charts/price": {
+      "get": {
+        "summary": "Chart Price",
+        "operationId": "chart_price_api_v1_audits__id__charts_price_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceChart"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuditDerived": {
+        "properties": {
+          "n_trials": {
+            "type": "integer",
+            "title": "N Trials"
+          },
+          "variants": {
+            "items": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Variants"
+          },
+          "selected_variant": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelectedVariant"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "config_hash": {
+            "type": "string",
+            "title": "Config Hash"
+          },
+          "versions": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Versions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "n_trials",
+          "variants",
+          "selected_variant",
+          "config_hash",
+          "versions"
+        ],
+        "title": "AuditDerived"
+      },
+      "AuditDetail": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "done",
+              "error",
+              "cancelled"
+            ],
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started At"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "config": {
+            "$ref": "#/components/schemas/CreateAuditRequest"
+          },
+          "derived": {
+            "$ref": "#/components/schemas/AuditDerived"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "skill",
+                  "luck",
+                  "inconclusive"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict"
+          },
+          "headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headline"
+          },
+          "metrics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AuditMetrics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "thresholds": {
+            "$ref": "#/components/schemas/ThresholdsOut"
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Progress"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ErrorInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "started_at",
+          "finished_at",
+          "config",
+          "derived",
+          "verdict",
+          "headline",
+          "metrics",
+          "thresholds",
+          "progress",
+          "error"
+        ],
+        "title": "AuditDetail"
+      },
+      "AuditList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AuditListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "limit",
+          "offset"
+        ],
+        "title": "AuditList"
+      },
+      "AuditListItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "done",
+              "error",
+              "cancelled"
+            ],
+            "title": "Status"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "skill",
+                  "luck",
+                  "inconclusive"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "symbol": {
+            "type": "string",
+            "const": "^NSEI",
+            "title": "Symbol"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "title": "End"
+          },
+          "template": {
+            "type": "string",
+            "enum": [
+              "ma_crossover",
+              "momentum",
+              "rsi_mean_reversion",
+              "breakout"
+            ],
+            "title": "Template"
+          },
+          "generator": {
+            "type": "string",
+            "enum": [
+              "garch",
+              "timegan",
+              "diffusion"
+            ],
+            "title": "Generator"
+          },
+          "n_histories": {
+            "type": "integer",
+            "title": "N Histories"
+          },
+          "n_trials": {
+            "type": "integer",
+            "title": "N Trials"
+          },
+          "metrics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AuditMetrics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "verdict",
+          "created_at",
+          "finished_at",
+          "symbol",
+          "start",
+          "end",
+          "template",
+          "generator",
+          "n_histories",
+          "n_trials",
+          "metrics"
+        ],
+        "title": "AuditListItem"
+      },
+      "AuditMetrics": {
+        "properties": {
+          "pbo": {
+            "type": "number",
+            "title": "Pbo"
+          },
+          "dsr_prob": {
+            "type": "number",
+            "title": "Dsr Prob"
+          },
+          "survival_rate": {
+            "type": "number",
+            "title": "Survival Rate"
+          },
+          "n_trials": {
+            "type": "integer",
+            "title": "N Trials"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pbo",
+          "dsr_prob",
+          "survival_rate",
+          "n_trials"
+        ],
+        "title": "AuditMetrics"
+      },
+      "Band": {
+        "properties": {
+          "p5": {
+            "type": "number",
+            "title": "P5"
+          },
+          "p50": {
+            "type": "number",
+            "title": "P50"
+          },
+          "p95": {
+            "type": "number",
+            "title": "P95"
+          }
+        },
+        "type": "object",
+        "required": [
+          "p5",
+          "p50",
+          "p95"
+        ],
+        "title": "Band"
+      },
+      "CancelResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "const": "cancelled",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status"
+        ],
+        "title": "CancelResponse"
+      },
+      "ConstraintInfo": {
+        "properties": {
+          "left": {
+            "type": "string",
+            "title": "Left"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "<",
+              "<="
+            ],
+            "title": "Op"
+          },
+          "right": {
+            "type": "string",
+            "title": "Right"
+          }
+        },
+        "type": "object",
+        "required": [
+          "left",
+          "op",
+          "right"
+        ],
+        "title": "ConstraintInfo"
+      },
+      "CreateAuditRequest": {
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "const": "^NSEI",
+            "title": "Symbol",
+            "default": "^NSEI"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "title": "End"
+          },
+          "strategy": {
+            "$ref": "#/components/schemas/StrategySpec"
+          },
+          "generator": {
+            "$ref": "#/components/schemas/GeneratorSpec",
+            "default": {
+              "type": "garch",
+              "n_histories": 1000,
+              "seed": 42
+            }
+          },
+          "costs_bps": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Costs Bps",
+            "default": 5
+          },
+          "reuse_cached": {
+            "type": "boolean",
+            "title": "Reuse Cached",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "strategy"
+        ],
+        "title": "CreateAuditRequest"
+      },
+      "CreateAuditResponse": {
+        "properties": {
+          "audit_id": {
+            "type": "string",
+            "title": "Audit Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "done",
+              "error",
+              "cancelled"
+            ],
+            "title": "Status"
+          },
+          "cached": {
+            "type": "boolean",
+            "title": "Cached"
+          }
+        },
+        "type": "object",
+        "required": [
+          "audit_id",
+          "status",
+          "cached"
+        ],
+        "title": "CreateAuditResponse"
+      },
+      "DSRChart": {
+        "properties": {
+          "raw_sharpe": {
+            "type": "number",
+            "title": "Raw Sharpe"
+          },
+          "deflated_sharpe": {
+            "type": "number",
+            "title": "Deflated Sharpe"
+          },
+          "sr0": {
+            "type": "number",
+            "title": "Sr0"
+          },
+          "dsr_prob": {
+            "type": "number",
+            "title": "Dsr Prob"
+          },
+          "n_trials": {
+            "type": "integer",
+            "title": "N Trials"
+          },
+          "skew": {
+            "type": "number",
+            "title": "Skew"
+          },
+          "kurtosis": {
+            "type": "number",
+            "title": "Kurtosis"
+          },
+          "sample_length": {
+            "type": "integer",
+            "title": "Sample Length"
+          }
+        },
+        "type": "object",
+        "required": [
+          "raw_sharpe",
+          "deflated_sharpe",
+          "sr0",
+          "dsr_prob",
+          "n_trials",
+          "skew",
+          "kurtosis",
+          "sample_length"
+        ],
+        "title": "DSRChart"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/FieldError"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody"
+      },
+      "ErrorInfo": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorInfo"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "FanChart": {
+        "properties": {
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date"
+            },
+            "type": "array",
+            "title": "Dates"
+          },
+          "p5": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P5"
+          },
+          "p25": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P25"
+          },
+          "p50": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P50"
+          },
+          "p75": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P75"
+          },
+          "p95": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P95"
+          },
+          "real": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Real"
+          },
+          "real_rank": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Real Rank"
+          },
+          "n_histories": {
+            "type": "integer",
+            "title": "N Histories"
+          },
+          "variant": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Variant"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dates",
+          "p5",
+          "p25",
+          "p50",
+          "p75",
+          "p95",
+          "real",
+          "real_rank",
+          "n_histories",
+          "variant"
+        ],
+        "title": "FanChart"
+      },
+      "FanPaths": {
+        "properties": {
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date"
+            },
+            "type": "array",
+            "title": "Dates"
+          },
+          "paths": {
+            "items": {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Paths"
+          },
+          "path_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Path Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dates",
+          "paths",
+          "path_ids"
+        ],
+        "title": "FanPaths"
+      },
+      "FieldError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Loc"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Msg"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg"
+        ],
+        "title": "FieldError"
+      },
+      "GeneratorInfo": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "garch",
+              "timegan",
+              "diffusion"
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "trained": {
+            "type": "boolean",
+            "title": "Trained"
+          },
+          "available": {
+            "type": "boolean",
+            "title": "Available"
+          },
+          "realism_passed": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Realism Passed"
+          },
+          "trained_on": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TrainedOn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "trained",
+          "available",
+          "realism_passed",
+          "trained_on"
+        ],
+        "title": "GeneratorInfo"
+      },
+      "GeneratorSpec": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "garch",
+              "timegan",
+              "diffusion"
+            ],
+            "title": "Type",
+            "default": "garch"
+          },
+          "n_histories": {
+            "type": "integer",
+            "enum": [
+              100,
+              500,
+              1000,
+              5000
+            ],
+            "title": "N Histories",
+            "default": 1000
+          },
+          "seed": {
+            "type": "integer",
+            "maximum": 2147483647.0,
+            "minimum": 0.0,
+            "title": "Seed",
+            "default": 42
+          }
+        },
+        "type": "object",
+        "title": "GeneratorSpec"
+      },
+      "Health": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status"
+          },
+          "redis": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "down"
+            ],
+            "title": "Redis"
+          },
+          "db": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "down"
+            ],
+            "title": "Db"
+          },
+          "job_mode": {
+            "type": "string",
+            "enum": [
+              "rq",
+              "inprocess"
+            ],
+            "title": "Job Mode"
+          },
+          "contract_version": {
+            "type": "string",
+            "title": "Contract Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "redis",
+          "db",
+          "job_mode",
+          "contract_version"
+        ],
+        "title": "Health"
+      },
+      "OHLCRow": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "open": {
+            "type": "number",
+            "title": "Open"
+          },
+          "high": {
+            "type": "number",
+            "title": "High"
+          },
+          "low": {
+            "type": "number",
+            "title": "Low"
+          },
+          "close": {
+            "type": "number",
+            "title": "Close"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "open",
+          "high",
+          "low",
+          "close",
+          "volume"
+        ],
+        "title": "OHLCRow"
+      },
+      "PBOChart": {
+        "properties": {
+          "logit_bins": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Logit Bins"
+          },
+          "counts": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Counts"
+          },
+          "pbo": {
+            "type": "number",
+            "title": "Pbo"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/PBOPoint"
+            },
+            "type": "array",
+            "title": "Points"
+          },
+          "slope": {
+            "type": "number",
+            "title": "Slope"
+          },
+          "r2": {
+            "type": "number",
+            "title": "R2"
+          },
+          "n_splits": {
+            "type": "integer",
+            "title": "N Splits"
+          },
+          "n_blocks": {
+            "type": "integer",
+            "title": "N Blocks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "logit_bins",
+          "counts",
+          "pbo",
+          "points",
+          "slope",
+          "r2",
+          "n_splits",
+          "n_blocks"
+        ],
+        "title": "PBOChart"
+      },
+      "PBOPoint": {
+        "properties": {
+          "is": {
+            "type": "number",
+            "title": "Is"
+          },
+          "oos": {
+            "type": "number",
+            "title": "Oos"
+          }
+        },
+        "type": "object",
+        "required": [
+          "is",
+          "oos"
+        ],
+        "title": "PBOPoint"
+      },
+      "ParamInfo": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "int",
+              "float"
+            ],
+            "title": "Type"
+          },
+          "min": {
+            "type": "number",
+            "title": "Min"
+          },
+          "max": {
+            "type": "number",
+            "title": "Max"
+          },
+          "step": {
+            "type": "number",
+            "title": "Step"
+          },
+          "default_values": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Default Values"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "label",
+          "type",
+          "min",
+          "max",
+          "step",
+          "default_values"
+        ],
+        "title": "ParamInfo"
+      },
+      "Preset": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "overfit",
+              "robust"
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "config": {
+            "$ref": "#/components/schemas/CreateAuditRequest"
+          },
+          "cached_audit_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cached Audit Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "config",
+          "cached_audit_id"
+        ],
+        "title": "Preset"
+      },
+      "PriceChart": {
+        "properties": {
+          "ohlc": {
+            "items": {
+              "$ref": "#/components/schemas/OHLCRow"
+            },
+            "type": "array",
+            "title": "Ohlc"
+          },
+          "signals": {
+            "items": {
+              "$ref": "#/components/schemas/Signal"
+            },
+            "type": "array",
+            "title": "Signals"
+          },
+          "variant": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Variant"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ohlc",
+          "signals",
+          "variant"
+        ],
+        "title": "PriceChart"
+      },
+      "PriceResponse": {
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "const": "^NSEI",
+            "title": "Symbol"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "title": "End"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "cache",
+              "yfinance"
+            ],
+            "title": "Source"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Fetched At"
+          },
+          "ohlc": {
+            "items": {
+              "$ref": "#/components/schemas/OHLCRow"
+            },
+            "type": "array",
+            "title": "Ohlc"
+          }
+        },
+        "type": "object",
+        "required": [
+          "symbol",
+          "start",
+          "end",
+          "source",
+          "fetched_at",
+          "ohlc"
+        ],
+        "title": "PriceResponse"
+      },
+      "Progress": {
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": [
+              "fetch",
+              "simulate",
+              "backtest",
+              "metrics"
+            ],
+            "title": "Stage"
+          },
+          "pct": {
+            "type": "integer",
+            "title": "Pct"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stage",
+          "pct",
+          "message"
+        ],
+        "title": "Progress"
+      },
+      "RealismReport": {
+        "properties": {
+          "generator": {
+            "type": "string",
+            "enum": [
+              "garch",
+              "timegan",
+              "diffusion"
+            ],
+            "title": "Generator"
+          },
+          "n_paths": {
+            "type": "integer",
+            "title": "N Paths"
+          },
+          "passed": {
+            "type": "integer",
+            "title": "Passed"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "tests": {
+            "items": {
+              "$ref": "#/components/schemas/RealismTestOut"
+            },
+            "type": "array",
+            "title": "Tests"
+          },
+          "return_distribution": {
+            "$ref": "#/components/schemas/ReturnDistribution"
+          },
+          "vol_clustering": {
+            "$ref": "#/components/schemas/VolClustering"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generator",
+          "n_paths",
+          "passed",
+          "total",
+          "tests",
+          "return_distribution",
+          "vol_clustering"
+        ],
+        "title": "RealismReport"
+      },
+      "RealismTestOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "excess_kurtosis",
+              "hill_tail_index",
+              "acf_returns",
+              "acf_abs_returns",
+              "acf_sq_returns",
+              "leverage",
+              "kurtosis_5d",
+              "kurtosis_20d"
+            ],
+            "title": "Id"
+          },
+          "group": {
+            "type": "string",
+            "enum": [
+              "fat_tails",
+              "no_autocorrelation",
+              "vol_clustering",
+              "leverage",
+              "aggregational_gaussianity"
+            ],
+            "title": "Group"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "statistic": {
+            "type": "string",
+            "title": "Statistic"
+          },
+          "real": {
+            "type": "number",
+            "title": "Real"
+          },
+          "synthetic": {
+            "$ref": "#/components/schemas/Band"
+          },
+          "passed": {
+            "type": "boolean",
+            "title": "Passed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "group",
+          "name",
+          "statistic",
+          "real",
+          "synthetic",
+          "passed"
+        ],
+        "title": "RealismTestOut"
+      },
+      "ReturnDistribution": {
+        "properties": {
+          "x": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "X"
+          },
+          "real_density": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Real Density"
+          },
+          "syn_p5": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Syn P5"
+          },
+          "syn_p50": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Syn P50"
+          },
+          "syn_p95": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Syn P95"
+          },
+          "real_kurtosis": {
+            "type": "number",
+            "title": "Real Kurtosis"
+          },
+          "syn_kurtosis_p50": {
+            "type": "number",
+            "title": "Syn Kurtosis P50"
+          }
+        },
+        "type": "object",
+        "required": [
+          "x",
+          "real_density",
+          "syn_p5",
+          "syn_p50",
+          "syn_p95",
+          "real_kurtosis",
+          "syn_kurtosis_p50"
+        ],
+        "title": "ReturnDistribution"
+      },
+      "SelectedVariant": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Index"
+          },
+          "params": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Params"
+          },
+          "real_sharpe": {
+            "type": "number",
+            "title": "Real Sharpe"
+          }
+        },
+        "type": "object",
+        "required": [
+          "index",
+          "params",
+          "real_sharpe"
+        ],
+        "title": "SelectedVariant"
+      },
+      "SharpeChart": {
+        "properties": {
+          "bins": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Bins"
+          },
+          "counts": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Counts"
+          },
+          "real_sharpe": {
+            "type": "number",
+            "title": "Real Sharpe"
+          },
+          "pct_beaten": {
+            "type": "number",
+            "title": "Pct Beaten"
+          },
+          "n_histories": {
+            "type": "integer",
+            "title": "N Histories"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bins",
+          "counts",
+          "real_sharpe",
+          "pct_beaten",
+          "n_histories"
+        ],
+        "title": "SharpeChart"
+      },
+      "Signal": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "buy",
+              "sell"
+            ],
+            "title": "Side"
+          },
+          "price": {
+            "type": "number",
+            "title": "Price"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "side",
+          "price"
+        ],
+        "title": "Signal"
+      },
+      "StrategySpec": {
+        "properties": {
+          "template": {
+            "type": "string",
+            "enum": [
+              "ma_crossover",
+              "momentum",
+              "rsi_mean_reversion",
+              "breakout"
+            ],
+            "title": "Template"
+          },
+          "grid": {
+            "additionalProperties": {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Grid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "template",
+          "grid"
+        ],
+        "title": "StrategySpec"
+      },
+      "SurvivalChart": {
+        "properties": {
+          "regimes": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "crash",
+                "high_vol",
+                "calm",
+                "trend_up",
+                "trend_down"
+              ]
+            },
+            "type": "array",
+            "title": "Regimes"
+          },
+          "metrics": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "survival",
+                "median_sharpe",
+                "median_max_drawdown"
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          },
+          "values": {
+            "items": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Values"
+          },
+          "n_windows": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "N Windows"
+          },
+          "window_days": {
+            "type": "integer",
+            "title": "Window Days"
+          },
+          "survival_rate": {
+            "type": "number",
+            "title": "Survival Rate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "regimes",
+          "metrics",
+          "values",
+          "n_windows",
+          "window_days",
+          "survival_rate"
+        ],
+        "title": "SurvivalChart"
+      },
+      "TemplateInfo": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "ma_crossover",
+              "momentum",
+              "rsi_mean_reversion",
+              "breakout"
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "params": {
+            "items": {
+              "$ref": "#/components/schemas/ParamInfo"
+            },
+            "type": "array",
+            "title": "Params"
+          },
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/ConstraintInfo"
+            },
+            "type": "array",
+            "title": "Constraints"
+          },
+          "default_grid": {
+            "additionalProperties": {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Default Grid"
+          },
+          "default_n_variants": {
+            "type": "integer",
+            "title": "Default N Variants"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "params",
+          "constraints",
+          "default_grid",
+          "default_n_variants"
+        ],
+        "title": "TemplateInfo"
+      },
+      "ThresholdsOut": {
+        "properties": {
+          "pbo_skill_max": {
+            "type": "number",
+            "title": "Pbo Skill Max"
+          },
+          "dsr_skill_min": {
+            "type": "number",
+            "title": "Dsr Skill Min"
+          },
+          "survival_skill_min": {
+            "type": "number",
+            "title": "Survival Skill Min"
+          },
+          "pbo_luck_min": {
+            "type": "number",
+            "title": "Pbo Luck Min"
+          },
+          "dsr_luck_max": {
+            "type": "number",
+            "title": "Dsr Luck Max"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pbo_skill_max",
+          "dsr_skill_min",
+          "survival_skill_min",
+          "pbo_luck_min",
+          "dsr_luck_max"
+        ],
+        "title": "ThresholdsOut"
+      },
+      "TrainedOn": {
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "const": "^NSEI",
+            "title": "Symbol"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "title": "End"
+          }
+        },
+        "type": "object",
+        "required": [
+          "symbol",
+          "start",
+          "end"
+        ],
+        "title": "TrainedOn"
+      },
+      "VolClustering": {
+        "properties": {
+          "lags": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Lags"
+          },
+          "real": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Real"
+          },
+          "syn_p5": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Syn P5"
+          },
+          "syn_p50": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Syn P50"
+          },
+          "syn_p95": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Syn P95"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lags",
+          "real",
+          "syn_p5",
+          "syn_p50",
+          "syn_p95"
+        ],
+        "title": "VolClustering"
+      }
+    }
+  }
+}

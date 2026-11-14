@@ -1,0 +1,50 @@
+name: Multiverse checks
+on: [push, pull_request]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.9.9"
+      - run: uv sync --frozen
+        working-directory: backend
+      - run: uv run ruff check .
+        working-directory: backend
+      - run: uv run ruff format --check .
+        working-directory: backend
+      - run: uv run pytest --cov=engine.backtest --cov=engine.metrics --cov=engine.realism --cov-fail-under=85
+        working-directory: backend
+        env:
+          JOB_MODE: inprocess
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: npm install -g pnpm@11
+      - run: pnpm install --frozen-lockfile
+        working-directory: frontend
+      - run: pnpm lint && pnpm test && pnpm typecheck && pnpm build
+        working-directory: frontend
+  generated-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.9.9"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: npm install -g pnpm@11
+      - run: uv sync --frozen
+        working-directory: backend
+      - run: uv run python -m app.cli export-openapi
+        working-directory: backend
+      - run: pnpm install --frozen-lockfile && pnpm gen:api:file
+        working-directory: frontend
+      - run: git diff --exit-code -- backend/openapi.json frontend/src/api/schema.d.ts
